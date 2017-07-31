@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-md-7">
+    <h4>Your details</h4>
+
+    <h6>First name</h6>
+  </div>
+
+  <div class="col-md-5">
+    <div class="order-summary">
+    <h4>Order Summary</h4>
+
+        <table class="table u-no-margin">
+          <tbody>
+            <tr *ngFor="let item of cart">
+              <td>
+                <img width="50" src="http://ecowarenz.datum.tv/webfiles/EcowareNZ/webpages/images/109938/{{item.image}}" class="u-float--left u-margin-right--md" alt="">
+              </td>
+              <td>
+                <p><strong>{{item.name}}</strong></p>
+                <p>{{item.size}}</p>
+                <p>SKU: {{item.sku}}</p>
+                <p>Quantity: {{item.quantity}}</p>
+              </td>
+              <td align="right">{{item.price * item.quantity}}</td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <h6>Subtotal</h6>
+              </td>
+              <td align="right">${{totalPrice}}</td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <h6>Freight</h6>
+              </td>
+              <td align="right">${{freightCost}}</td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                <h5 class="text-xs-right">Total: ${{totalPrice + freightCost}}</h5>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <button type="button" class="btn btn-lg btn-block btn-success u-margin-top" (click)="confirmOrder()">Confirm Order</button>
+  </div>
+
+</div>

@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-md-10">
+    <h4 class="u-no-margin-bottom">Shopping Cart</h4>
+  </div>
+  <div class="col-md-2 text-xs-right">
+    <button type="button" class="btn btn-lg btn-block btn-success" [routerLink]="['../order-summary']">Checkout now</button>
+  </div>
+
+  <div class="col-md-12">
+    <table class="table u-margin-top">
+        <thead>
+          <tr>
+            <th>Item Description</th>
+            <th width="280">Your options</th>
+            <th width="80">Quantity</th>
+            <th width="120">Price (NZD)</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of cart">
+            <th scope="row">
+              <img width="50" src="http://ecowarenz.datum.tv/webfiles/EcowareNZ/webpages/images/109938/{{item.image}}" class="u-float--left u-margin-right--md" alt="">
+              <h5>{{item.name}}</h5>
+              <p>SKU: {{item.sku}}</p>
+            </th>
+            <td>{{item.size}}</td>
+            <td><input class="form-control" #quantity type="number" (change)="saveQuantity(quantity.value, item.sku)" value="{{item.quantity}}"></td>
+            <td>${{item.price * quantity.value}}</td>
+            <td><a class="fa fa-trash-o" aria-hidden="true" (click)="shoppingCartService.deleteItem(item.sku)"></a></td>
+          </tr>
+          <tr>
+            <th scope="row">
+              <img src="http://placehold.it/50x50" class="u-float--left u-margin-right--md" alt="">
+              <h6>Freight</h6>
+            </th>
+            <td>
+              <select #selectedDelivery class="form-control u-margin-bottom" width="100" placeholder="Select Freight" (change)="selectDelivery(selectedDelivery.value)" id="selectBranch">
+                <option *ngFor="let branch of branches" [value]="branch.id">{{branch.deliveryAddress}}</option>
+              </select>  
+            </td>
+            <td></td>
+            <td>{{selectedFreight.freightCost}}</td>
+            <td></td>
+          </tr>
+        </tbody>
+    </table>
+      <h5 class="text-xs-right">Total: ${{totalPrice}}</h5>
+  </div>
+</div>

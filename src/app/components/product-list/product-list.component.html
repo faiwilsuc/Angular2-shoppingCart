@@ -1,0 +1,8 @@
+<div class="row">
+    <div class="col-md-4" *ngFor="let product of products | search : 'Name' : term">
+        <c-product-item [product]="product" (click)="onSelected(product)"></c-product-item>
+
+        <!-- If Product Catalogue -->
+        <!--<c-product-item [product]="product" (click)="onSelected(product)"></c-product-item>-->
+    </div>
+</div>

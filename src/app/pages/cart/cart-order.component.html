@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-10">
+    <h4 class="u-no-margin-bottom">Order {{cart.OrderId}} - {{cart.OrderRef}}</h4>
+  </div>
+  <div class="col-md-2 text-xs-right">
+    <button type="button" class="btn btn-lg btn-block btn-success" (click)="createNewCart()" >Checkout now</button>
+  </div>
+
+  <div class="col-md-12">
+    <table class="table u-margin-top">
+        <thead>
+          <tr>
+            <th>Item Description</th>
+            <th>Your options</th>
+            <th>Quantity</th>
+            <th>Price (NZD)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of cart.OrderDetails">
+            <th scope="row">
+              <img src="http://ecowarenz.datum.tv/webfiles/EcowareNZ/webpages/images/109938/{{item.Image1}}" class="u-float--left u-margin-right--md" alt="">
+              <h6>{{item.Name}}</h6>
+              <p class="a-text--bold">{{item.productId}}</p>
+            </th>
+            <td>{{item.Option1}} <span *ngIf="item.Option2">({{item.Option2}})</span></td>
+            <td>{{item.Qty}}</td>
+            <td>${{item.Price}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <h5 class="text-xs-right">Total: ${{cart.Total}}</h5>
+  </div>
+</div>
+

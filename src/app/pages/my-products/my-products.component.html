@@ -1,0 +1,27 @@
+<!--Product Name <input type="text" id="productName" #name>-->
+<!--Product Img <input type="text" id="productImgSrc" #imgSrc>-->
+<!--Product Price <input type="text" id="productPrice" #price>-->
+<!--<button (click)="onSubmit(name.value, imgSrc.value, price.value)">Add Product</button>-->
+
+<!--<br><br>-->
+
+<div class="form-group row">
+    <div class="col-md-2">
+        <i class="fa fa-chevron-down a-text--green u-padding--10"></i>
+        <select class="form-control a-dropdown a-dropdown--no-bg a-dropdown--lg" id="filterProducts">
+            <option>All products</option>
+            <option>Coffee Cup</option>
+            <option>Containers</option>
+        </select>
+    </div>
+    <div class="col-md-4 offset-md-6 text-xs-right">
+        <div class="u-inner-icon u-inner-icon--right">
+            <i class="fa fa-search"></i>
+            <input class="form-control" type="search" #term (keyup)="0" placeholder="Search products">
+        </div>
+    </div>
+</div>
+
+<c-my-product-list [term]=term.value></c-my-product-list>
+
+<br><br>

@@ -1,0 +1,20 @@
+<h4>My Settings</h4>
+
+<div *ngIf="userDetails">
+    <strong>Name:</strong> {{userDetails.name}} <br>
+    <!--<strong>Cin7ID:</strong> {{userDetails.cin7ID}} <br>-->
+    <strong>Email:</strong> {{userDetails.email}} <br>
+    <strong>Billing Addres:</strong> {{userDetails.billingAddress}} <br>
+
+    <br>    
+    <button class="btn btn-success" (click)="sendPasswordReset()">Reset Password</button> <br>
+</div>
+
+<br>
+<h4>Cin7 Data</h4>
+<strong>Name:</strong> {{userDetailsCin7.FirstName}} {{userDetailsCin7.LastName}} <br>
+<strong>MemberID:</strong> {{userDetailsCin7.MemberId}} <br>
+<strong>Mobile:</strong> {{userDetailsCin7.Mobile}} <br>
+<strong>Email:</strong> {{userDetailsCin7.Email}} <br>
+<strong>Address:</strong> {{userDetailsCin7.Address}} <br>
+<strong>Company:</strong> {{userDetailsCin7.Company}} <br>

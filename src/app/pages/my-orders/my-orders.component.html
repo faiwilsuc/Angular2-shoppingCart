@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-md-5">
+    <div class="u-inner-icon u-inner-icon--right">
+        <i class="fa fa-search"></i>
+        <input class="form-control" type="search" #term (keyup)="0" placeholder="Enter reference code">
+    </div>
+  </div>
+  <div class="col-md-7 text-xs-right">
+    <div class="form-inline">
+         from
+      <div class="form-group">
+         <div class="u-inner-icon u-inner-icon--left">
+          <i class="fa fa-calendar"></i>
+          <input class="form-control" type="date" #fromDate (change)="0" height="38" id="from-datetime-local-input">
+        </div>
+      </div>
+      to
+      <div class="form-group">
+        <div class="u-inner-icon u-inner-icon--left">
+          <i class="fa fa-calendar"></i>
+          <input class="form-control" type="date" #toDate (change)="0" id="to-datetime-local-input">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <table class="table u-margin-top">
+        <thead>
+          <tr>
+            <th>Reference</th>
+            <th>Date</th>
+            <th>Total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders | multisearch : ['OrderRef','CreatedDateEpoch'] : [term.value, fromDate.value, toDate.value]">
+            <th scope="row" class="a-text--blue u-cursor--pointer" [routerLink]="['/cart', order.OrderId]">{{order.OrderRef}}</th>
+            <td>{{order.CreatedDate}}</td>
+            <td>${{order.Total}} {{order.CurrencyName}}</td>
+            <td class="text-xs-right">
+              <button type="button" class="btn btn-large btn-outline-success" [routerLink]="['/cart', order.OrderId]">View</button>
+              <button type="button" class="btn btn-large btn-outline-success" [routerLink]="['/cart', order.OrderId]">Reorder</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+</div>

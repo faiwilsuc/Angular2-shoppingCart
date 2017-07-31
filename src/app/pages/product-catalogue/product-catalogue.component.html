@@ -1,0 +1,15 @@
+<div class="form-group row">
+    <div class="col-md-4">
+        <h4 class="u-no-margin" style="margin-top: 5px;">{{filter}}</h4>
+    </div>
+    <div class="col-md-4 offset-md-4 text-xs-right">
+        <div class="u-inner-icon u-inner-icon--right">
+            <i class="fa fa-search"></i>
+            <input class="form-control" type="search" #term (keyup)="0" placeholder="Search products">
+        </div>
+    </div>
+</div>
+
+<c-product-list [term]=term.value></c-product-list>
+
+<br><br>

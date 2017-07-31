@@ -1,0 +1,12 @@
+<h2>Selected:</h2>
+
+<article class="product-item" itemscope itemtype="http://schema.org/Product">
+  <a href="#" title="#" itemprop="url">
+    <img src="{{selectedProduct.imgSrc}}" alt="#title" itemprop="image" />
+    
+  </a>
+  <h1 itemprop="name">{{selectedProduct.name}}</h1>
+  <div class="offer" itemscope itemtype="http://schema.org/Offer">
+      <span class="price" itemprop="price">${{selectedProduct.price}} / carton</span>
+  </div><!--/end .offer-->
+</article>

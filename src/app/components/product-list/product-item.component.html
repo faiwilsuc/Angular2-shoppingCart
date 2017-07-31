@@ -1,0 +1,54 @@
+<article class="product-item" itemscope itemtype="http://schema.org/Product">
+  <div class="product-img">
+      <img *ngIf="product.Image1" class="u-cursor--pointer" (click)="modal.open()" src="http://ecowarenz.datum.tv/webfiles/EcowareNZ/webpages/images/109938/{{product.Image1}}" width="290" height="290" alt="{{product.Image1}}" itemprop="image" />
+      <img *ngIf="!product.Image1" class="u-cursor--pointer" (click)="modal.open()" src="http://placehold.it/290x290" alt="{{product.Image1}}" itemprop="image" width="290" height="290" />
+    <!--<input class="product-item__more-info" type="button" value="More info" (click)="modal.open()" />-->
+  </div>
+  <h5 *ngIf="isMyProduct" itemprop="name" class="product-item__name a-text--blue u-cursor--pointer" (click)="modal.open()">{{product.NameWithSize}}</h5>
+  <h5 *ngIf="!isMyProduct" itemprop="name" class="product-item__name a-text--blue u-cursor--pointer" (click)="modal.open()">{{product.Name}}</h5>
+  <div class="offer" itemscope itemtype="http://schema.org/Offer">
+      <span class="price product-item__price" itemprop="price" *ngIf="isMyProduct">${{product.Options[0].RetailPrice}} / carton</span>
+  </div><!--/end .offer-->
+
+  <form class="form-inline">
+    <button class="btn btn-success" (click)="modal.open()">View Product</button>
+  </form>
+</article>
+
+<modal #modal size="lg">
+    <modal-body>
+        <div class="row">
+          <div class="col-md-4">
+            <img *ngIf="product.Image1" src="http://ecowarenz.datum.tv/webfiles/EcowareNZ/webpages/images/109938/{{product.Image1}}" width="100%" alt="{{product.Image1}}" itemprop="image" />
+            <img *ngIf="!product.Image1" src="http://placehold.it/290x290" width="100%" alt="{{product.Image1}}" itemprop="image" />
+          </div>
+          <div class="col-md-8 no-padding-left">
+            <h3 itemprop="name">{{product.NameWithSize}}</h3>
+            <p>
+              <strong *ngIf="isMyProduct">{{product.Options[0].Size}} - ({{product.Options[0].Dimension}}) &nbsp;</strong> <strong>{{product.Options[0].UnitsPerCarton}} {{product.Unit}}</strong>
+            </p>
+            <p>{{product.Description}}</p>
+
+            <div class="form-group row">
+              <div class="col-md-6" *ngIf="!isMyProduct">
+                  <label for="selectSize">Select Size</label>
+                  <select #selectedOption class="form-control u-margin-bottom" (change)="selectOption(selectedOption.value)" id="selectSize">
+                    <option *ngFor="let option of product.Options" [value]="option.SKU">{{option.Size}} - ({{option.Dimension}})</option>
+                  </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-5">
+                <h3>${{selectedOption.RetailPrice}} / carton</h3>
+              </div>
+              <div class="col-md-2">
+                  <input type="number" #quantity placeholder="qtd" value="1" class="form-control" />
+              </div>
+              <div class="col-md-5">
+                <add-cart [quantity]="quantity.value" [selectedOption]="selectedOption" [product]="product"></add-cart>
+              </div>
+            </div>
+          </div>
+        </div>
+    </modal-body>
+</modal>
